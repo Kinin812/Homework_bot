@@ -39,6 +39,7 @@ logger.addHandler(rotating_handler)
 
 class ErrorM(Exception):
     """Собственное исключение."""
+
     pass
 
 
@@ -153,7 +154,6 @@ def main():
             response = get_api_answer(current_timestamp)
             homeworks = check_response(response)
             if len(homeworks) == 0:
-#                parse_status(homeworks)
                 send_message(bot, f'Работа не в обработке: {homeworks}')
             else:
                 if homeworks[0]['status'] in HOMEWORK_STATUSES:

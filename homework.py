@@ -1,10 +1,11 @@
-import logging
 import os
 import sys
 import time
+import logging
 from http import HTTPStatus
 from json.decoder import JSONDecodeError
 from logging.handlers import RotatingFileHandler
+
 import requests
 import telegram
 from dotenv import load_dotenv
@@ -40,7 +41,6 @@ logger.addHandler(rotating_handler)
 
 class ErrorM(Exception):
     """Собственное исключение."""
-
     pass
 
 

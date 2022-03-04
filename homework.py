@@ -26,13 +26,14 @@ HOMEWORK_STATUSES = {
 }
 logging.basicConfig(
     level=logging.INFO,
-    filename='main.log',
+    filename=(os.path.join(os.path.dirname(__file__), 'main.log')),
     format='%(asctime)s, %(levelname)s, %(message)s'
 )
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler(sys.stdout)
 rotating_handler = RotatingFileHandler(
-    'bot_ya_logger.log', maxBytes=50000000, backupCount=5
+    (os.path.join(os.path.dirname(__file__), 'bot_ya_logger.log')),
+    maxBytes=50000000, backupCount=5
 )
 logger.addHandler(rotating_handler)
 
@@ -148,7 +149,7 @@ def check_tokens():
 def main():
     """Основная логика работы бота."""
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
-    current_timestamp = int(time.time())
+    current_timestamp = int(time.time()) - 100000
     while True:
         try:
             response = get_api_answer(current_timestamp)

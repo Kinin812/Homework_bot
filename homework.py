@@ -151,7 +151,12 @@ def check_tokens():
 
 def main():
     """Основная логика работы бота."""
-    bot = telegram.Bot(token=TELEGRAM_TOKEN)
+    try:
+        bot = telegram.Bot(token=TELEGRAM_TOKEN)
+    except telegram.error.TelegramError:
+        logger.error(
+            'Не получается иницализировать бота!'
+        )
     current_timestamp = int(time.time()) - 900000
     while True:
         try:

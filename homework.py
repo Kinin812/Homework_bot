@@ -39,8 +39,8 @@ rotating_handler = RotatingFileHandler(
 logger.addHandler(rotating_handler)
 
 
-class ErrorM(Exception):
-    """Собственное исключение."""
+class MyException(Exception):
+    """Собственное рукотворное исключение."""
     pass
 
 
@@ -58,7 +58,10 @@ def send_message(bot, message):
 
 def get_api_answer(current_timestamp):
     """Запрос к эндпоинту API-сервиса."""
-    timestamp = current_timestamp or int(time.time())
+    if type(current_timestamp) != int:
+        raise TypeError(f'В аргумент функции {get_api_answer.__name__} передалась не дата')
+    else:
+        timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}
     try:
         response = requests.get(ENDPOINT, headers=HEADERS, params=params)
@@ -68,7 +71,7 @@ def get_api_answer(current_timestamp):
                 f'[Запрос к API] Ошибка запроса к эндпоинту API-сервиса.'
                 f'Статус ответа сервера {response.status_code}'
             )
-            raise ErrorM(
+            raise MyException(
                 f'[Запрос к API] Статус, отличный от 200: '
                 f'{response.status_code}'
             )
@@ -149,7 +152,7 @@ def check_tokens():
 def main():
     """Основная логика работы бота."""
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
-    current_timestamp = int(time.time()) - 100000
+    current_timestamp = int(time.time()) - 900000
     while True:
         try:
             response = get_api_answer(current_timestamp)

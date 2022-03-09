@@ -41,6 +41,7 @@ logger.addHandler(rotating_handler)
 
 class MyException(Exception):
     """Собственное рукотворное исключение."""
+
     pass
 
 
@@ -59,7 +60,8 @@ def send_message(bot, message):
 def get_api_answer(current_timestamp):
     """Запрос к эндпоинту API-сервиса."""
     if type(current_timestamp) != int:
-        raise TypeError(f'В аргумент функции {get_api_answer.__name__} передалась не дата')
+        raise TypeError(f'В аргумент функции {get_api_answer.__name__} '
+                        f'передалась не дата')
     else:
         timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}

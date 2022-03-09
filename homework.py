@@ -59,9 +59,12 @@ def send_message(bot, message):
 
 def get_api_answer(current_timestamp):
     """Запрос к эндпоинту API-сервиса."""
-    if type(current_timestamp) != int:
-        raise TypeError(f'В аргумент функции {get_api_answer.__name__} '
-                        f'передалась не дата')
+    try:
+        int(current_timestamp)
+    except ValueError:
+        raise ValueError(
+            f'В аргумент функции {get_api_answer.__name__} '
+            f'передалось значение {current_timestamp}. Это не дата')
     else:
         timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}
@@ -159,7 +162,7 @@ def main():
         logger.error(
             'Не получается иницализировать бота!'
         )
-    current_timestamp = int(time.time()) - 900000
+    current_timestamp = int(time.time()) - 1900000
     while True:
         try:
             response = get_api_answer(current_timestamp)

@@ -11,23 +11,23 @@
 
 ---
 
-## Стек технологий
+## Technology stack
 
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat-square&logo=Python)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/-Django-464646?style=flat-square&logo=Django)](https://www.djangoproject.com/)
 
-## Описание проекта
+## Description of the project
 
-Социальная сеть, предоставляющая пользователям возможность создать учетную запись, публиковать записи, подписываться на любимых авторов и отмечать понравившиеся записи.
+A social network that allows users to create an account, post posts, follow their favorite authors, and tag posts they like.
 
-## Установка проекта локально
+## Installing the project locally
 
-* Склонировать репозиторий на локальную машину:
+* Clone repository to local machine:
 ```bash
 git clone https://github.com/Kinin812/Yatube.git
 ```
 
-* Cоздать и активировать виртуальное окружение:
+* Create and activate virtual environment:
 
 ```bash
 python -m venv env
@@ -37,22 +37,24 @@ python -m venv env
 source env/bin/activate
 ```
 
-* Перейти в директирию и установить зависимости из файла requirements.txt:
+* Go to directory and install dependencies from requirements.txt file:
 
 ```bash
-cd yatube/
+cd youtube/
 pip install -r requirements.txt
 ```
 
-* Выполните миграции:
+* Perform migrations:
 
 ```bash
 python manage.py migrate
 ```
 
-* Запустите сервер:
+* Start the server:
 ```bash
 python manage.py runserver
 ```
 
-* Запущенный проект доступен по адресу: [http://localhost:8000](http://localhost:8000)
+* The running project is available at: [http://localhost:8000](http://localhost:8000)
+
+
